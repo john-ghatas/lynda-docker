@@ -1,10 +1,10 @@
-\documentclass{article}
+\documentclass{paper}
 \usepackage{hyperref}
 \usepackage{datetime}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{float}
-
+\usepackage{hyphenat}
 \title{Automated Continious Integration with Travis}
 \newdate{date}{24}{02}{2020}
 \date{\displaydate{date}}
@@ -38,22 +38,52 @@
         $ npm install
         $ npm start
     \end{lstlisting}
-    To start the backend locally \textbf{MongoDB} is required to have a local install.
+    To start the backend locally \textbf{MongoDB} is required to have a local install. An example of the backen is shown
+    in \textbf{Figure \ref{fig:backend}}
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=2.6, pagebox=artbox]{Images/server.png}
+        \caption{The root route of the backend running}
+        \label{fig:backend}
+    \end{figure}
+    \newpage
     }
 
-    \subsection{Exporting to docker}{The next step was to export the image to docker locally, to ensure the setup was
+    % Page 4
+    \subsection{Exporting to docker}{
+    The next step was to export the image to docker locally, to ensure the setup was
     running before deploying the automation of the Docker image to the TravisCI servers. To build a Docker image, I had to create
     a Dockerfile specifying the steps that needed to be taken to deploy the Express backend in a Docker container. The Dockerfile
-    is shown in \textbf{Figure \ref{fig:dockerfile}}.}
-    
-    \begin{figure}[H]
+    is shown in \textbf{Figure \ref{fig:dockerfile}}.
+    \begin{figure}[!h]
         \centering
         \includegraphics[scale=3, pagebox=artbox]{Images/Dockerfile.png}
         \caption{The dockerfile containing the instructions for building the container}
         \label{fig:dockerfile}
     \end{figure}
+    \newline
+    To prevent any unnecessary files being transferred to the Docker container, a \textbf{.dockerignore} file is defined.
+    We ignored the Node Modules folder and the debug log from the Node Package Manager, thus reducing the total size of 
+    the container. Now we could build the image with following command (assuming you are in the root folder of the repository):
+    \begin{lstlisting}[language=bash]
+        $ docker build . -t [domain]/[name]
+        $ docker run -p [local port]:[docker port] 
+        -d [domain]/[name]
+    \end{lstlisting}
+    }    
+    \newpage
 
-
-
+    % Page 5
+    \subsection{Configuring TravisCI}{Now that I ensured the backend runs locally, we were ready to automate the building 
+    of the docker image on Travis. To configure Travis, a \textbf{.travis.yml} file was created to specify the instructions 
+    for the CI tool. In \textbf{Figure \ref{fig:travis}} the configuration is shown of the travis file.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=3, pagebox=artbox]{Images/travis.png}
+        \caption{The configuration file of for the CI tool}
+        \label{fig:travis}
+    \end{figure}
+    \newline
+    }
 
 \end{document}
