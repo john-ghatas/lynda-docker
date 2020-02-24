@@ -31,7 +31,7 @@
     \paragraph{Goal}{This project was pulled from a Lynda tutorial teaching the basics of Docker, 
     the Docker container created runs an express backend using MongoDB as the database server.}
 
-    \subsection{Running the application locally}{The first order of business was to ensure that the application
+    \section{Running the application}{The first order of business was to ensure that the application
     was able to run locally before deploying it in a Docker container. To do this we ran the following commands in
     the main directory:
     \begin{lstlisting}[language=bash]
@@ -50,7 +50,7 @@
     }
 
     % Page 4
-    \subsection{Exporting to docker}{
+    \section{Exporting to docker}{
     The next step was to export the image to docker locally, to ensure the setup was
     running before deploying the automation of the Docker image to the TravisCI servers. To build a Docker image, I had to create
     a Dockerfile specifying the steps that needed to be taken to deploy the Express backend in a Docker container. The Dockerfile
@@ -74,7 +74,7 @@
     \newpage
 
     % Page 5
-    \subsection{Configuring TravisCI}{Now that I ensured the backend runs locally, we were ready to automate the building 
+    \section{Configuring TravisCI}{Now that I ensured the backend runs locally, we were ready to automate the building 
     of the docker image on Travis. To configure Travis, a \textbf{.travis.yml} file was created to specify the instructions 
     for the CI tool. In \textbf{Figure \ref{fig:travis}} the configuration is shown of the travis file.
     \begin{figure}[!h]
@@ -84,6 +84,14 @@
         \label{fig:travis}
     \end{figure}
     \newline
+    The configuration file will be picked by the plugin TravisCI, that I installed on the repository automating the build. After
+    the build is done the status will be updated in the README of the repository as can be seen in \textbf{Figure \ref{fig:result}}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=1.4, pagebox=artbox]{Images/README.png}
+        \caption{The build status of the build of the Docker container}
+        \label{fig:result}
+    \end{figure}
     }
 
 \end{document}
