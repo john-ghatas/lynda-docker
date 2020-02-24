@@ -3,3 +3,5 @@
 \contentsline {section}{\numberline {2}Running the application}{3}{section.2}% 
 \contentsline {section}{\numberline {3}Exporting to docker}{4}{section.3}% 
 \contentsline {section}{\numberline {4}Configuring TravisCI}{5}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Deploying TravisCI}{6}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Adding the indicator}{7}{subsection.4.2}% 

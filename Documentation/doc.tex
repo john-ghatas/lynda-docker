@@ -13,7 +13,7 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
-    urlcolor=red,
+    urlcolor=blue,
     linktoc=all
 }
 
@@ -38,7 +38,7 @@
         $ npm install
         $ npm start
     \end{lstlisting}
-    To start the backend locally \textbf{MongoDB} is required to have a local install. An example of the backen is shown
+    To start the backend locally \textbf{MongoDB} is required to have a local install. An example of the backend is shown
     in \textbf{Figure \ref{fig:backend}}
     \begin{figure}[!h]
         \centering
@@ -62,7 +62,15 @@
         \label{fig:dockerfile}
     \end{figure}
     \newline
-    To prevent any unnecessary files being transferred to the Docker container, a \textbf{.dockerignore} file is defined.
+    To prevent any unnecessary files being transferred to the Docker container, a \textbf{.dockerignore} file is defined as shown in 
+    \textbf{Figure \ref{fig:dockerignore}}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=3, pagebox=artbox]{Images/dockerignore.png}
+        \caption{The ignored files and folders when building the Docker container}
+        \label{fig:dockerignore}
+    \end{figure}
+    \newline
     We ignored the Node Modules folder and the debug log from the Node Package Manager, thus reducing the total size of 
     the container. Now we could build the image with following command (assuming you are in the root folder of the repository):
     \begin{lstlisting}[language=bash]
@@ -74,7 +82,24 @@
     \newpage
 
     % Page 5
-    \section{Configuring TravisCI}{Now that I ensured the backend runs locally, we were ready to automate the building 
+    \section{Configuring TravisCI}
+    {Before continuing, we have to create the repository, on the homepage of GitHub go to the left hand panel and click on "New". 
+    This button sends you to the page seen in \textbf{Figure \ref{fig:github}}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[scale=1.4, pagebox=artbox]{Images/github.png}
+        \caption{The configuration of the GitHub repository when created}
+        \label{fig:github}
+    \end{figure}        
+    \newline
+    Fill in the repository name, keep the repository on \textbf{public} because Travis will be on a limited plan otherwise. 
+    Make sure the Travis CI box is checked, and init the repo with a README if you prefer to do so. 
+    \newpage
+    }
+
+    % Page 6
+    \subsection{Deploying TravisCI}
+    {Now that I ensured the backend runs locally, we were ready to automate the building 
     of the docker image on Travis. To configure Travis, a \textbf{.travis.yml} file was created to specify the instructions 
     for the CI tool. In \textbf{Figure \ref{fig:travis}} the configuration is shown of the travis file.
     \begin{figure}[!h]
@@ -92,6 +117,39 @@
         \caption{The build status of the build of the Docker container}
         \label{fig:result}
     \end{figure}
+    \newpage
+    \subsection{Adding the indicator}
+    {As seen in \textbf{Figure \ref{fig:result}} and indicator of the build status was added indicating whether
+    the build of the Docker container passed or not. To get this container I had to login to my GitHub account linked to TravisCI
+    at the \href{https://travis-ci.com/}{portal}, after which I could see my projects linked to my GitHub shown in 
+    \textbf{Figure \ref{fig:travisportal}}.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.2, pagebox=artbox]{Images/travisportal.png}
+        \caption{The portal with projects linked to my GitHub repositories}
+        \label{fig:travisportal}
+    \end{figure}
+    \noindent The project I configured for building the docker container is called "lynda-docker" which I favourited in the screenshot in
+    \textbf{Figure \ref{fig:travisportal}}. When I click on the project I see the status of the build in the header as  shown 
+    in \textbf{Figure \ref{fig:travisstatus}}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.2, pagebox=artbox]{Images/travisheader.png}
+        \caption{The status of the project deploying Docker containers}
+        \label{fig:travisstatus}
+    \end{figure}
+    \newpage
+    \noindent Click on the build status, and you are presented with a screen options to embed the status. 
+    The default option an Image URL as seen in \textbf{Figure \ref{fig:travisembed}}, click on the format and change it to
+    Markdown, copy the result into the README.MD of the repo and the build status is embedded.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=2, pagebox=artbox]{Images/travisembed.png}
+        \caption{The embed options for the result}
+        \label{fig:travisembed}
+    \end{figure}
+
     }
 
 \end{document}

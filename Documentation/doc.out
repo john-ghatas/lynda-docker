@@ -2,3 +2,5 @@
 \BOOKMARK [1][-]{section.2}{Running the application}{}% 2
 \BOOKMARK [1][-]{section.3}{Exporting to docker}{}% 3
 \BOOKMARK [1][-]{section.4}{Configuring TravisCI}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Deploying TravisCI}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Adding the indicator}{section.4}% 6
